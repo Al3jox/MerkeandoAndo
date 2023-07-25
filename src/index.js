@@ -37,5 +37,6 @@ require('./database');
 
 
 //============= Config. Rutas ===========
-
+app.use('/users', require('./routes/user-routes'));
+app.use('/products', require('./routes/products-routes'));
 //=======================================

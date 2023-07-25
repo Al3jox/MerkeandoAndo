@@ -12,7 +12,7 @@ const userSchema = new Schema({
     email: String,
     contrasenia: String,
     activo: {type: Boolean, default:true},
-    rol: {type: String, default:user},
+    rol: {type: String, default:"user"},
     fechaRegistro: {type: Date, default:Date.now}
 })
 
