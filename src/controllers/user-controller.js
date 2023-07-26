@@ -34,6 +34,7 @@ userCtr.crearUsuario = async(req, res) =>{
         })
     }
     // Creación de nuevos usuarios, encriptado de contraseñas y firma de tokens
+    // Recordar que los roles deben ser ("user" o "admin")
     else{
         nuevoUser.contrasenia = await bcrypt.hash(contrasenia, 10)
         const token = jwt.sign({_id:nuevoUser._id}, 'ProyectoFinal')
@@ -42,7 +43,7 @@ userCtr.crearUsuario = async(req, res) =>{
             mensaje: 'Bienvenido a Merkeando - Ando!!',
             id: nuevoUser._id,
             nombres: nuevoUser.nombres,
-            apellidos: nuevoUser.nombres,
+            apellidos: nuevoUser.apellidos,
             rol: nuevoUser.rol,
             token
         })
@@ -69,10 +70,10 @@ userCtr.login = async(req, res) => {
         const token = jwt.sign({_id: usuario._id}, 'ProyectoFinal')
         res.json({
             mensaje: '¡Bienvenido a Merkeando - Ando!',
-            id: nuevoUser._id,
-            nombres: nuevoUser.nombres,
-            apellidos: nuevoUser.nombres,
-            rol: nuevoUser.rol,
+            id: usuario._id,
+            nombres: usuario.nombres,
+            apellidos: usuario.apellidos,
+            rol: usuario.rol,
             token
         })
     }
@@ -96,10 +97,22 @@ userCtr.listarUsers = async(req, res) => {
 
 
 // =========== Actualizar Usuarios ============
+// userCtr.actuaizarUser = async(req, res) => {
+//     const id = req.params.id
+//     await userModel.findByIdAndUpdate({_id:id}, req.body)
+//     const respuesta = await userModel.findById({_id:id})
+//     res.json({
+//         mensaje: 'El cliente ha sido actualizado',
+//         respuesta
+//     })
+// }
+// =======================================
+
+// =========== Actualizar Usuarios ============
 userCtr.actuaizarUser = async(req, res) => {
-    const id = req.params._id
-    await userModel.findByIdAndUpdate({_id: id}, req,body)
-    const respuesta = await userModel.findById({_id: id})
+    const id = req.params.id
+    await userModel.findByIdAndUpdate(id, req.body)
+    const respuesta = await userModel.findById(id)
     res.json({
         mensaje: 'El cliente ha sido actualizado',
         respuesta

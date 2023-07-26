@@ -11,8 +11,8 @@ const auth = require('../helper/auth');
 router.post('/crearProducto', productCtr.crearProducto);
 router.get('/listarProducto', productCtr.listarProductos);
 router.get('/listarProducto/:id', productCtr.listarProductosId);
-router.put('/actualizarProducto', auth.verificacionToken, productCtr.actualizarProducto);
-router.delete('/eliminarProducto', auth.verificacionToken, productCtr.eliminarProducto);
+router.put('/actualizarProducto/:id', auth.verificacionToken, productCtr.actualizarProducto);
+router.delete('/eliminarProducto/:id', auth.verificacionToken, productCtr.eliminarProducto);
 // ========================================
 
 

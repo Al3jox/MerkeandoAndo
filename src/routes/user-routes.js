@@ -12,7 +12,7 @@ const auth = require('../helper/auth');
 router.post('/login', userCtr.login);
 router.post('/crearUsuario', userCtr.crearUsuario);
 router.get('/listarUsuarios', userCtr.listarUsers);
-router.put('/actualizarUsuarios', auth.verificacionToken, userCtr.actuaizarUser);
+router.put('/actualizarUsuarios/:id', userCtr.actuaizarUser);
 router.delete('/eliminarUsuario', auth.verificacionToken, userCtr.eliminarUser);
 // ========================================
 

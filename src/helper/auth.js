@@ -5,15 +5,15 @@ const jwt = require('jsonwebtoken');
 
 
 // ========= Validación por diferencia de Token ===========
-auth.verificacionToken = (req, res) => {
-    if(!req.header.autorization){
+auth.verificacionToken = (req, res, next) => {
+    if(!req.headers.autorizacion){
         return res.json({
             mensaje: 'No estás autorizado, no te has registrado'
         })
     }
 
     // Cierre de sesión por eliminación de token
-    const token = req.header.autorization
+    const token = req.headers.autorizacion
     if(token === 'null'){
         res.json({
             mensaje: 'No estás autorizado, tu sesión ha sido cerrada'
